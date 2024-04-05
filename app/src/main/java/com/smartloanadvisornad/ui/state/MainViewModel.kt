@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import loans.online.loan.app.domain.repository.RepositoryAnalytic
-import com.smartloanadvisornad.ui.state.MainEvent.OnAddressName
+import com.smartloanadvisornad.ui.state.MainEvent.OnSetPeriod
 import com.smartloanadvisornad.ui.state.MainEvent.OnChangeStatusApplication
 import com.smartloanadvisornad.ui.state.MainEvent.OnGoToWeb
 import com.smartloanadvisornad.ui.state.MainEvent.OnSetAmount
@@ -106,9 +106,9 @@ class MainViewModel @Inject constructor(
                     _state.value.copy(
                         statusApplication = Success,
                         sharedPhone = sharedKeeper.getPhone() ?: "",
-                        sharedAddress = sharedKeeper.getAddress() ?: "",
+                        sharedPeriod = sharedKeeper.getPeriod() ?: 0,
                         sharedEmail = sharedKeeper.getEmail() ?: "",
-                        sharedAmount = sharedKeeper.getAmount() ?: ""
+                        sharedAmount = sharedKeeper.getAmount() ?: 0
                     )
                         .updateStateUI()
                 }
@@ -303,9 +303,9 @@ class MainViewModel @Inject constructor(
                 }
             }
 
-            is OnAddressName -> {
+            is OnSetPeriod -> {
                 _state.value.copy(
-                    sharedAddress = mainEvent.address,
+                    sharedPeriod = mainEvent.period,
                 )
                     .updateStateUI()
             }
@@ -340,7 +340,7 @@ class MainViewModel @Inject constructor(
 
             SaveLocalData -> {
                 viewModelScope.launch {
-                    sharedKeeper.setAddress(_state.value.sharedAddress)
+                    sharedKeeper.setPeriod(_state.value.sharedPeriod)
                     sharedKeeper.setAmount(_state.value.sharedAmount)
                     sharedKeeper.setEmail(_state.value.sharedEmail)
                     sharedKeeper.setPhone(_state.value.sharedPhone)

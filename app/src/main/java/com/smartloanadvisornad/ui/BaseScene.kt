@@ -28,7 +28,11 @@ fun BaseScene(
             )
         }
         StatusApplication.NameState -> TODO()
-        StatusApplication.PeriodState -> TODO()
+        StatusApplication.PeriodState -> {
+            PeriodScreen(
+                sharedPeriod = state.value.sharedPeriod,
+                onEvent = event)
+        }
         StatusApplication.PhoneState -> TODO()
         StatusApplication.QuickCash -> {
             GetQuickCashScreen2 (

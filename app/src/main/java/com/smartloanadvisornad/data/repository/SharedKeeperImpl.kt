@@ -65,15 +65,15 @@ class SharedKeeperImpl @Inject constructor(
 
     override suspend fun getEmail(): String? = sharedPref.getString(SHARED_EMAIL, "")
 
-    override suspend fun setAddress(date: String) =
-        sharedPref.edit().putString(SHARED_ADDRESS, date).apply()
+    override suspend fun setPeriod(date: Int) =
+        sharedPref.edit().putInt(SHARED_ADDRESS, date).apply()
 
-    override suspend fun getAddress(): String? = sharedPref.getString(SHARED_ADDRESS, "")
+    override suspend fun getPeriod(): Int = sharedPref.getInt(SHARED_ADDRESS, 0)
 
-    override suspend fun setAmount(date: String) =
-        sharedPref.edit().putString(SHARED_AMOUNT, date).apply()
+    override suspend fun setAmount(date: Int) =
+        sharedPref.edit().putInt(SHARED_AMOUNT, date).apply()
 
-    override suspend fun getAmount(): String? = sharedPref.getString(SHARED_AMOUNT, "")
+    override suspend fun getAmount(): Int = sharedPref.getInt(SHARED_AMOUNT, 0)
 
     override suspend fun setFirstRun(isFirst: Boolean) =
         sharedPref.edit().putBoolean(SHARED_FIRST_RUN, isFirst).apply()

@@ -14,4 +14,17 @@
     <string name="_20_000">20 000</string>
     <string name="_30_000">30 000</string>
     <string name="_50_000">50 000</string>
+    <string name="period">Срок:</string>
+    <string name="_2_month">2 мес</string>
+    <string name="_month">3 мес</string>
+    <string name="_4_month">4 мес</string>
+    <string name="_5_month">5 мес</string>
+    <string name="_6_month">6 мес</string>
+    <string name="_7_month">7 мес</string>
+    <string name="_8_month">8 мес</string>
+    <string name="_10_month">10 мес</string>
+    <string name="_11_month">11 мес</string>
+    <string name="_1_year">1 год</string>
+    <string name="_2_years">2 года</string>
+    <string name="_9_month">9 мес</string>
 </resources>

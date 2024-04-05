@@ -1,7 +1,6 @@
 package com.smartloanadvisornad.ui
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,8 +14,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,7 +21,6 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -37,29 +33,28 @@ import com.smartloanadvisornad.ui.state.MainEvent
 import com.smartloanadvisornad.ui.state.StatusApplication
 import com.smartloanadvisornad.ui.theme.background
 import com.smartloanadvisornad.ui.theme.black
-import com.smartloanadvisornad.ui.theme.grey
 import com.smartloanadvisornad.ui.theme.greyText
 import com.smartloanadvisornad.ui.theme.textColor
 import com.smartloanadvisornad.ui.uikit.CustomButton
 import com.smartloanadvisornad.ui.uikit.TopRow
 
 @Composable
-fun AmountScreen(
+fun PeriodScreen(
     modifier: Modifier = Modifier,
-    sharedAmount: Int,
+    sharedPeriod: Int,
     onEvent: (MainEvent) -> Unit,
 ) {
     BackHandler {
-        onEvent(MainEvent.OnChangeStatusApplication(StatusApplication.Main))
+        onEvent(MainEvent.OnChangeStatusApplication(StatusApplication.AmountState))
     }
-    val amount = remember { mutableIntStateOf(sharedAmount) }
+    val period = remember { mutableIntStateOf(sharedPeriod) }
     Scaffold(
         modifier = modifier.fillMaxSize(),
         containerColor = background,
         topBar = {
             TopRow(
                 onClickBack = {
-                    onEvent(MainEvent.OnChangeStatusApplication(StatusApplication.Main))
+                    onEvent(MainEvent.OnChangeStatusApplication(StatusApplication.AmountState))
                 },
             )
         },
@@ -73,11 +68,11 @@ fun AmountScreen(
                     containerColor = textColor,
                     disabledContainerColor = textColor
                 ),
-                enabled = amount.intValue!=0,
+                enabled = period.intValue!=0,
                 contentPadding = PaddingValues(vertical = 12.dp),
                 onClick = {
-                    onEvent(MainEvent.OnSetAmount(amount.intValue))
-                    onEvent(MainEvent.OnChangeStatusApplication(StatusApplication.PeriodState))
+                    onEvent(MainEvent.OnSetAmount(period.intValue))
+                    onEvent(MainEvent.OnChangeStatusApplication(StatusApplication.NameState))
                 }) {
                 Text(
                     text = stringResource(R.string.next),
@@ -99,45 +94,12 @@ fun AmountScreen(
                 .padding(horizontal = 24.dp),
         ) {
             Text(
-                text = stringResource(R.string.amount_of_loan),
+                text = stringResource(R.string.period),
                 style = TextStyle(
                     fontSize = 24.sp,
                     fontFamily = FontFamily(Font(R.font.inter)),
                     fontWeight = FontWeight(600),
                     color = black
-                )
-            )
-            Spacer(modifier = modifier.height(30.dp))
-            Card(
-                modifier = modifier
-                    .fillMaxWidth(),
-                shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = Color.Transparent
-                ),
-                border = BorderStroke(width = 1.dp, color = grey)
-            ) {
-                Text(
-                    modifier = modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    text = amount.intValue.toString(),
-                    style = TextStyle(
-                        fontSize = 16.sp,
-                        fontFamily = FontFamily(Font(R.font.inter)),
-                        fontWeight = FontWeight(600),
-                        color = black
-                    )
-                )
-            }
-            Spacer(modifier = modifier.height(6.dp))
-            Text(
-                text = stringResource(R.string.limits),
-                style = TextStyle(
-                    fontSize = 12.sp,
-                    fontFamily = FontFamily(Font(R.font.inter)),
-                    fontWeight = FontWeight(300),
-                    color = textColor
                 )
             )
             Spacer(modifier = modifier.height(35.dp))
@@ -149,41 +111,41 @@ fun AmountScreen(
             ) {
                 CustomButton(
                     modifier = modifier.weight(1f),
-                    colorBack = if (amount.intValue ==3000) textColor else greyText,
-                    colorText = if (amount.intValue ==3000) background else black,
-                    title = stringResource(R.string._3000),
+                    colorBack = if (period.intValue == 2) textColor else greyText,
+                    colorText = if (period.intValue == 2) background else black,
+                    title = stringResource(R.string._2_month),
                     onClick = {
-                        amount.intValue = 3000
+                        period.intValue = 2
                     }
                 )
                 Spacer(modifier = modifier.width(15.dp))
                 CustomButton(
                     modifier = modifier.weight(1f),
-                    colorBack = if (amount.intValue ==5000) textColor else greyText,
-                    colorText = if (amount.intValue ==5000) background else black,
-                    title = stringResource(R.string._5000),
+                    colorBack = if (period.intValue == 3) textColor else greyText,
+                    colorText = if (period.intValue == 3) background else black,
+                    title = stringResource(R.string._month),
                     onClick = {
-                        amount.intValue = 5000
+                        period.intValue = 3
                     }
                 )
                 Spacer(modifier = modifier.width(15.dp))
                 CustomButton(
                     modifier = modifier.weight(1f),
-                    colorBack = if (amount.intValue ==7000) textColor else greyText,
-                    colorText = if (amount.intValue ==7000) background else black,
-                    title = stringResource(R.string._7000),
+                    colorBack = if (period.intValue == 4) textColor else greyText,
+                    colorText = if (period.intValue == 4) background else black,
+                    title = stringResource(R.string._4_month),
                     onClick = {
-                        amount.intValue = 7000
+                        period.intValue = 4
                     }
                 )
                 Spacer(modifier = modifier.width(15.dp))
                 CustomButton(
                     modifier = modifier.weight(1f),
-                    colorBack = if (amount.intValue ==10000) textColor else greyText,
-                    colorText = if (amount.intValue ==10000) background else black,
-                    title = stringResource(R.string._10_000),
+                    colorBack = if (period.intValue == 5) textColor else greyText,
+                    colorText = if (period.intValue == 5) background else black,
+                    title = stringResource(R.string._5_month),
                     onClick = {
-                        amount.intValue = 10000
+                        period.intValue = 5
                     }
                 )
             }
@@ -196,41 +158,88 @@ fun AmountScreen(
             ) {
                 CustomButton(
                     modifier = modifier.weight(1f),
-                    colorBack = if (amount.intValue ==15000) textColor else greyText,
-                    colorText = if (amount.intValue ==15000) background else black,
-                    title = stringResource(R.string._15_000),
+                    colorBack = if (period.intValue == 6) textColor else greyText,
+                    colorText = if (period.intValue == 6) background else black,
+                    title = stringResource(R.string._6_month),
                     onClick = {
-                        amount.intValue = 15000
+                        period.intValue = 6
                     }
                 )
                 Spacer(modifier = modifier.width(15.dp))
                 CustomButton(
                     modifier = modifier.weight(1f),
-                    colorBack = if (amount.intValue ==20000) textColor else greyText,
-                    colorText = if (amount.intValue ==20000) background else black,
-                    title = stringResource(R.string._20_000),
+                    colorBack = if (period.intValue == 7) textColor else greyText,
+                    colorText = if (period.intValue == 7) background else black,
+                    title = stringResource(R.string._7_month),
                     onClick = {
-                        amount.intValue = 20000
+                        period.intValue = 7
                     }
                 )
                 Spacer(modifier = modifier.width(15.dp))
                 CustomButton(
                     modifier = modifier.weight(1f),
-                    colorBack = if (amount.intValue ==30000) textColor else greyText,
-                    colorText = if (amount.intValue ==30000) background else black,
-                    title = stringResource(R.string._30_000),
+                    colorBack = if (period.intValue == 8) textColor else greyText,
+                    colorText = if (period.intValue == 8) background else black,
+                    title = stringResource(R.string._8_month),
                     onClick = {
-                        amount.intValue = 30000
+                        period.intValue = 8
                     }
                 )
                 Spacer(modifier = modifier.width(15.dp))
                 CustomButton(
                     modifier = modifier.weight(1f),
-                    colorBack = if (amount.intValue == 50000) textColor else greyText,
-                    colorText = if (amount.intValue == 50000) background else black,
-                    title = stringResource(R.string._50_000),
+                    colorBack = if (period.intValue == 9) textColor else greyText,
+                    colorText = if (period.intValue == 9) background else black,
+                    title = stringResource(R.string._9_month),
                     onClick = {
-                        amount.intValue = 50000
+                        period.intValue = 9
+                    }
+                )
+            }
+            Spacer(modifier = modifier.height(15.dp))
+            Row(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                CustomButton(
+                    modifier = modifier.weight(1f),
+                    colorBack = if (period.intValue == 10) textColor else greyText,
+                    colorText = if (period.intValue == 10) background else black,
+                    title = stringResource(R.string._10_month),
+                    onClick = {
+                        period.intValue = 10
+                    }
+                )
+                Spacer(modifier = modifier.width(15.dp))
+                CustomButton(
+                    modifier = modifier.weight(1f),
+                    colorBack = if (period.intValue == 11) textColor else greyText,
+                    colorText = if (period.intValue == 11) background else black,
+                    title = stringResource(R.string._11_month),
+                    onClick = {
+                        period.intValue = 11
+                    }
+                )
+                Spacer(modifier = modifier.width(15.dp))
+                CustomButton(
+                    modifier = modifier.weight(1f),
+                    colorBack = if (period.intValue == 12) textColor else greyText,
+                    colorText = if (period.intValue == 12) background else black,
+                    title = stringResource(R.string._1_year),
+                    onClick = {
+                        period.intValue = 12
+                    }
+                )
+                Spacer(modifier = modifier.width(15.dp))
+                CustomButton(
+                    modifier = modifier.weight(1f),
+                    colorBack = if (period.intValue == 13) textColor else greyText,
+                    colorText = if (period.intValue == 13) background else black,
+                    title = stringResource(R.string._2_years),
+                    onClick = {
+                        period.intValue = 13
                     }
                 )
             }

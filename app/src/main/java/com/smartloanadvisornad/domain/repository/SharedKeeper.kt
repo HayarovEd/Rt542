@@ -29,10 +29,10 @@ interface SharedKeeper {
     suspend fun getPhone(): String?
     suspend fun setEmail(date: String)
     suspend fun getEmail(): String?
-    suspend fun setAddress(date: String)
-    suspend fun getAddress(): String?
-    suspend fun setAmount(date: String)
-    suspend fun getAmount(): String?
+    suspend fun setPeriod(date: Int)
+    suspend fun getPeriod(): Int?
+    suspend fun setAmount(date: Int)
+    suspend fun getAmount(): Int?
     suspend fun setFirstRun(isFirst: Boolean)
     suspend fun getFirstRun(): Boolean
 }
