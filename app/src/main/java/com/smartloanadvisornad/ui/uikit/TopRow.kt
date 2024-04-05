@@ -38,6 +38,7 @@ import com.smartloanadvisornad.ui.theme.textColor
 @Composable
 fun TopRow(
     modifier: Modifier = Modifier,
+    title: String = stringResource(R.string.get_loan),
     onClickBack: () -> Unit,
 ) {
     Box(modifier = modifier
@@ -58,7 +59,7 @@ fun TopRow(
         Text(
             modifier = modifier
                 .align(alignment = Alignment.Center),
-            text = stringResource(R.string.get_loan),
+            text = title,
             style = TextStyle(
                 fontSize = 18.sp,
                 fontFamily = FontFamily(Font(R.font.inter)),

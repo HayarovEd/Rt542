@@ -2,6 +2,7 @@ package com.smartloanadvisornad.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import com.smartloanadvisornad.ui.state.MainEvent
 import com.smartloanadvisornad.ui.state.MainViewModel
 import com.smartloanadvisornad.ui.state.StatusApplication
 
@@ -18,7 +19,13 @@ fun BaseScene(
                 sharedAmount = state.value.sharedAmount,
                 onEvent = event)
         }
-        StatusApplication.EmailState -> TODO()
+
+        StatusApplication.EmailState -> {
+            EmailScreen(
+                sharedEmail = state.value.sharedEmail,
+                onEvent = event
+            )
+        }
         StatusApplication.Main -> {
             MainScreen(
                 lastApplicationState = state.value.lastState,
@@ -36,14 +43,33 @@ fun BaseScene(
                 sharedPeriod = state.value.sharedPeriod,
                 onEvent = event)
         }
-        StatusApplication.PhoneState -> TODO()
+
+        StatusApplication.PhoneState -> {
+            PhoneScreen(
+                sharedPhone = state.value.sharedPhone,
+                sharedEmail = state.value.sharedEmail,
+                onEvent = event
+            )
+        }
         StatusApplication.QuickCash -> {
             GetQuickCashScreen2 (
                 onEvent = event
             )
         }
-        StatusApplication.Reconnect -> TODO()
-        StatusApplication.ReconnectFirstLoad -> TODO()
+        StatusApplication.Reconnect -> {
+            NoInternetScreen(
+                onClick = {
+                    event(MainEvent.Reconnect)
+                }
+            )
+        }
+        StatusApplication.ReconnectFirstLoad -> {
+            NoInternetScreen(
+                onClick = {
+                    event(MainEvent.ReconnectFirstLoad)
+                }
+            )
+        }
         StatusApplication.Success -> TODO()
         is StatusApplication.TermState -> {
             TermsScreen(
@@ -56,8 +82,20 @@ fun BaseScene(
                 onEvent = event
             )
         }
-        StatusApplication.WaitingState -> TODO()
-        is StatusApplication.Web -> TODO()
+
+        StatusApplication.WaitingState -> {
+            WaitingScreen(
+                onEvent = event
+            )
+        }
+
+        is StatusApplication.Web -> {
+            WebViewScreen(
+                url = result.url,
+                offerName = result.offerName,
+                onEvent = event
+            )
+        }
         StatusApplication.Welcome -> {
             GetQuickCashScreen (
                 onEvent = event

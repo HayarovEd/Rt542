@@ -143,8 +143,7 @@ fun AmountScreen(
             Spacer(modifier = modifier.height(35.dp))
             Row(
                 modifier = modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp),
+                    .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 CustomButton(
@@ -190,8 +189,7 @@ fun AmountScreen(
             Spacer(modifier = modifier.height(15.dp))
             Row(
                 modifier = modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp),
+                    .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 CustomButton(

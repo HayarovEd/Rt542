@@ -12,6 +12,7 @@ import com.smartloanadvisornad.domain.utils.SHARED_EMAIL
 import com.smartloanadvisornad.domain.utils.SHARED_FIREBASE_TOKEN
 import com.smartloanadvisornad.domain.utils.SHARED_FIRST_RUN
 import com.smartloanadvisornad.domain.utils.SHARED_MY_TRACKER_INSTANCE_ID
+import com.smartloanadvisornad.domain.utils.SHARED_NAME
 import com.smartloanadvisornad.domain.utils.SHARED_PHONE
 import com.smartloanadvisornad.domain.utils.SHARED_SUB2
 import com.smartloanadvisornad.domain.utils.SHARED_YANDEX_DEVICE_ID
@@ -59,6 +60,10 @@ class SharedKeeperImpl @Inject constructor(
         sharedPref.edit().putString(SHARED_PHONE, date).apply()
 
     override suspend fun getPhone(): String? = sharedPref.getString(SHARED_PHONE, "")
+    override suspend fun setName(date: String) {
+        sharedPref.edit().putString(SHARED_NAME, date).apply()
+    }
+    override suspend fun getName(): String?  = sharedPref.getString(SHARED_NAME, "")
 
     override suspend fun setEmail(date: String) =
         sharedPref.edit().putString(SHARED_EMAIL, date).apply()

@@ -27,6 +27,8 @@ interface SharedKeeper {
     suspend fun getYandexMetricaDeviceId(): String?
     suspend fun setPhone(date: String)
     suspend fun getPhone(): String?
+    suspend fun setName(date: String)
+    suspend fun getName(): String?
     suspend fun setEmail(date: String)
     suspend fun getEmail(): String?
     suspend fun setPeriod(date: Int)

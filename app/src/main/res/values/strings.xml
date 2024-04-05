@@ -30,4 +30,15 @@
     <string name="enter_name">Введите ФИО:</string>
     <string name="your_name">Ваше ФИО</string>
     <string name="enter_name_surname">Введите имя и фамилию</string>
+    <string name="enter_email">Введите Email:</string>
+    <string name="your_email">Ваш Email</string>
+    <string name="email">Введите Ваш email</string>
+    <string name="appointment">Ваша заявка\nпредварительно одобрена,\nожидайте звонка менеджера</string>
+
+    <string name="not_connect">Нет подключения</string>
+    <string name="try_internet">Проверьте интернет-соединение\nи попробуйте еще раз</string>
+    <string name="reconnect">Переподключиться</string>
+    <string name="enter_phone">Введите номер телефона:</string>
+    <string name="your_phone">Ваш моб. номер:</string>
+    <string name="Enter_your_phone">Введите номер телефона</string>
 </resources>

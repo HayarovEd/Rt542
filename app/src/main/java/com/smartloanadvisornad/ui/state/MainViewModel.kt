@@ -95,7 +95,6 @@ class MainViewModel @Inject constructor(
 
     private suspend fun loadData() {
         if (checkInternet()) {
-            Log.d("test view vodel", "first ${sharedKeeper.getFirstRun()}")
             if (sharedKeeper.getFirstRun()) {
                 _state.value.copy(
                     statusApplication = StatusApplication.Welcome
@@ -103,14 +102,28 @@ class MainViewModel @Inject constructor(
                     .updateStateUI()
             } else {
                 viewModelScope.launch(Dispatchers.Main) {
-                    _state.value.copy(
-                        statusApplication = Success,
-                        sharedPhone = sharedKeeper.getPhone() ?: "",
-                        sharedPeriod = sharedKeeper.getPeriod() ?: 0,
-                        sharedEmail = sharedKeeper.getEmail() ?: "",
-                        sharedAmount = sharedKeeper.getAmount() ?: 0
-                    )
-                        .updateStateUI()
+                    val email = sharedKeeper.getEmail() ?: ""
+                    if (email.isBlank()||email == DEMO_EMAIL) {
+                        _state.value.copy(
+                            statusApplication = StatusApplication.Main,
+                            sharedPhone = sharedKeeper.getPhone() ?: "",
+                            sharedPeriod = sharedKeeper.getPeriod() ?: 0,
+                            sharedEmail = email,
+                            sharedName = sharedKeeper.getName() ?: "",
+                            sharedAmount = sharedKeeper.getAmount() ?: 0
+                        )
+                            .updateStateUI()
+                    } else {
+                        _state.value.copy(
+                            statusApplication = Success,
+                            sharedPhone = sharedKeeper.getPhone() ?: "",
+                            sharedPeriod = sharedKeeper.getPeriod() ?: 0,
+                            sharedEmail = email,
+                            sharedName = sharedKeeper.getName() ?: "",
+                            sharedAmount = sharedKeeper.getAmount() ?: 0
+                        )
+                            .updateStateUI()
+                    }
                 }
             }
             val sharedYandexMetrica = sharedKeeper.getYandexMetricaDeviceId()
@@ -277,7 +290,7 @@ class MainViewModel @Inject constructor(
                 if (service.checkedInternetConnection()) {
                     if (_state.value.sharedEmail == DEMO_EMAIL) {
                         _state.value.copy(
-                            statusApplication = AmountState,
+                            statusApplication = StatusApplication.WaitingState,
                         )
                             .updateStateUI()
                     } else {
@@ -344,6 +357,7 @@ class MainViewModel @Inject constructor(
                     sharedKeeper.setAmount(_state.value.sharedAmount)
                     sharedKeeper.setEmail(_state.value.sharedEmail)
                     sharedKeeper.setPhone(_state.value.sharedPhone)
+                    sharedKeeper.setName(_state.value.sharedName)
                 }
             }
         }
