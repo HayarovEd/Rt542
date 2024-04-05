@@ -47,7 +47,6 @@ fun BaseScene(
         StatusApplication.PhoneState -> {
             PhoneScreen(
                 sharedPhone = state.value.sharedPhone,
-                sharedEmail = state.value.sharedEmail,
                 onEvent = event
             )
         }
@@ -70,7 +69,11 @@ fun BaseScene(
                 }
             )
         }
-        StatusApplication.Success -> TODO()
+        StatusApplication.Success -> {
+            LoansScreen(
+                loans = state.value.dbData?.loans?: emptyList(),
+                onEvent = event)
+        }
         is StatusApplication.TermState -> {
             TermsScreen(
                 terms = state.value.dbData?.appConfig?.privacyPolicyHtml ?: "",

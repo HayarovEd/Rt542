@@ -30,8 +30,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.smartloanadvisornad.R
-import com.smartloanadvisornad.domain.utils.DEMO_EMAIL
-import com.smartloanadvisornad.domain.utils.isValidEmail
 import com.smartloanadvisornad.ui.state.MainEvent
 import com.smartloanadvisornad.ui.state.StatusApplication
 import com.smartloanadvisornad.ui.theme.background
@@ -46,7 +44,6 @@ import com.smartloanadvisornad.ui.uikit.TopRow
 fun PhoneScreen(
     modifier: Modifier = Modifier,
     sharedPhone: String,
-    sharedEmail: String,
     onEvent: (MainEvent) -> Unit,
 ) {
     BackHandler {
