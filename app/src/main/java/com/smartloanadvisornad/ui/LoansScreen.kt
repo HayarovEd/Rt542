@@ -2,10 +2,12 @@ package com.smartloanadvisornad.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -64,42 +66,49 @@ fun LoansScreen(
                         defaultElevation = 10.dp
                     )
                 ) {
-                    Row (
+                    Column(
                         modifier = modifier
                             .fillMaxWidth()
                             .padding(24.dp),
-                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         AsyncImage(
-                            modifier = modifier.width(45.dp),
-                            model = loan.image, 
+                            modifier = modifier.fillMaxWidth(),
+                            model = loan.image,
                             contentDescription = "",
                             contentScale = ContentScale.FillWidth)
-                        Spacer(modifier = modifier.width(15.dp))
-                        Text(
-                            text = loan.name,
-                            style = TextStyle(
-                                fontSize = 18.sp,
-                                fontFamily = FontFamily(Font(R.font.inter)),
-                                fontWeight = FontWeight(500),
-                                color = black
-                            )
-                        )
-                        Spacer(modifier = modifier.weight(1f))
-                        IconButton(
-                            modifier = modifier,
-                            onClick = {
-                                onEvent(MainEvent.OnGoToWeb(
-                                    urlOffer = loan.url,
-                                    nameOffer = loan.name
-                                ))
-                            }
+                        Spacer(modifier = modifier.height(10.dp))
+                        Row (
+                            modifier = modifier
+                                .fillMaxWidth()
+                                .padding(24.dp),
+                            verticalAlignment = Alignment.CenterVertically,
                         ) {
-                            Icon(
-                                imageVector = ImageVector.vectorResource(id = R.drawable.next),
-                                contentDescription = "",
-                                tint = textColor
+                            Spacer(modifier = modifier.width(15.dp))
+                            Text(
+                                text = loan.name,
+                                style = TextStyle(
+                                    fontSize = 25.sp,
+                                    fontFamily = FontFamily(Font(R.font.inter)),
+                                    fontWeight = FontWeight(700),
+                                    color = black
+                                )
                             )
+                            Spacer(modifier = modifier.weight(1f))
+                            IconButton(
+                                modifier = modifier,
+                                onClick = {
+                                    onEvent(MainEvent.OnGoToWeb(
+                                        urlOffer = loan.url,
+                                        nameOffer = loan.name
+                                    ))
+                                }
+                            ) {
+                                Icon(
+                                    imageVector = ImageVector.vectorResource(id = R.drawable.next),
+                                    contentDescription = "",
+                                    tint = textColor
+                                )
+                            }
                         }
                     }
                 }
