@@ -34,7 +34,12 @@ fun BaseScene(
         StatusApplication.Reconnect -> TODO()
         StatusApplication.ReconnectFirstLoad -> TODO()
         StatusApplication.Success -> TODO()
-        is StatusApplication.TermState -> TODO()
+        is StatusApplication.TermState -> {
+            TermsScreen(
+                terms = state.value.dbData?.appConfig?.privacyPolicyHtml ?: "",
+                onClick = result.onClick
+            )
+        }
         StatusApplication.Transparent -> {
             GetQuickCashScreen3 (
                 onEvent = event
