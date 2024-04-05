@@ -121,7 +121,9 @@ fun PhoneScreen(
                 modifier = modifier.fillMaxWidth(),
                 value = phone.value,
                 onValueChange = {
-                    phone.value = it
+                    if (phone.value.length<10) {
+                        phone.value = it
+                    }
                 },
                 shape = RoundedCornerShape(5.dp),
                 textStyle = TextStyle(

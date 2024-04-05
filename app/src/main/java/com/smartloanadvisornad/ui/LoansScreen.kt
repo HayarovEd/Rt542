@@ -70,6 +70,7 @@ fun LoansScreen(
                         modifier = modifier
                             .fillMaxWidth()
                             .padding(24.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         AsyncImage(
                             modifier = modifier.fillMaxWidth(),
@@ -77,38 +78,20 @@ fun LoansScreen(
                             contentDescription = "",
                             contentScale = ContentScale.FillWidth)
                         Spacer(modifier = modifier.height(10.dp))
-                        Row (
-                            modifier = modifier
-                                .fillMaxWidth()
-                                .padding(24.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                        ) {
-                            Spacer(modifier = modifier.width(15.dp))
-                            Text(
-                                text = loan.name,
-                                style = TextStyle(
-                                    fontSize = 25.sp,
-                                    fontFamily = FontFamily(Font(R.font.inter)),
-                                    fontWeight = FontWeight(700),
-                                    color = black
-                                )
-                            )
-                            Spacer(modifier = modifier.weight(1f))
-                            IconButton(
-                                modifier = modifier,
-                                onClick = {
-                                    onEvent(MainEvent.OnGoToWeb(
-                                        urlOffer = loan.url,
-                                        nameOffer = loan.name
-                                    ))
-                                }
-                            ) {
-                                Icon(
-                                    imageVector = ImageVector.vectorResource(id = R.drawable.next),
-                                    contentDescription = "",
-                                    tint = textColor
-                                )
+                        IconButton(
+                            modifier = modifier,
+                            onClick = {
+                                onEvent(MainEvent.OnGoToWeb(
+                                    urlOffer = loan.url,
+                                    nameOffer = loan.name
+                                ))
                             }
+                        ) {
+                            Icon(
+                                imageVector = ImageVector.vectorResource(id = R.drawable.next),
+                                contentDescription = "",
+                                tint = textColor
+                            )
                         }
                     }
                 }
