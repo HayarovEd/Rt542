@@ -56,7 +56,7 @@ fun TermsScreen(
                modifier = modifier
                    .fillMaxWidth()
                    .background(color = background)
-                   .padding(horizontal = 25.dp),
+                   .padding(horizontal = 24.dp, vertical = 15.dp),
                verticalAlignment = Alignment.CenterVertically
            ) {
                IconButton(

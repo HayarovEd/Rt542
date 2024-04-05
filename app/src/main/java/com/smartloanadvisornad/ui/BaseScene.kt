@@ -14,7 +14,11 @@ fun BaseScene(
 
     when (val result = state.value.statusApplication) {
         StatusApplication.AddressState -> TODO()
-        StatusApplication.AmountState -> TODO()
+        StatusApplication.AmountState -> {
+            AmountScreen(
+                sharedAmount = state.value.sharedAmount,
+                onEvent = event)
+        }
         StatusApplication.EmailState -> TODO()
         StatusApplication.Main -> {
             MainScreen(
