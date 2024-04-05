@@ -12,7 +12,6 @@ sealed class StatusApplication {
     data object AmountState: StatusApplication()
     data object PeriodState: StatusApplication()
     data object WaitingState: StatusApplication()
-    data object AddressState: StatusApplication()
     class TermState(
         val onClick: () -> Unit,
     ): StatusApplication()

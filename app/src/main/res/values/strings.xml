@@ -27,4 +27,7 @@
     <string name="_1_year">1 год</string>
     <string name="_2_years">2 года</string>
     <string name="_9_month">9 мес</string>
+    <string name="enter_name">Введите ФИО:</string>
+    <string name="your_name">Ваше ФИО</string>
+    <string name="enter_name_surname">Введите имя и фамилию</string>
 </resources>

@@ -71,7 +71,7 @@ fun PeriodScreen(
                 enabled = period.intValue!=0,
                 contentPadding = PaddingValues(vertical = 12.dp),
                 onClick = {
-                    onEvent(MainEvent.OnSetAmount(period.intValue))
+                    onEvent(MainEvent.OnSetPeriod(period.intValue))
                     onEvent(MainEvent.OnChangeStatusApplication(StatusApplication.NameState))
                 }) {
                 Text(

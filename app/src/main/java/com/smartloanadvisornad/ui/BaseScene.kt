@@ -13,7 +13,6 @@ fun BaseScene(
     val event = viewModel::onEvent
 
     when (val result = state.value.statusApplication) {
-        StatusApplication.AddressState -> TODO()
         StatusApplication.AmountState -> {
             AmountScreen(
                 sharedAmount = state.value.sharedAmount,
@@ -27,7 +26,11 @@ fun BaseScene(
                 onEvent = event
             )
         }
-        StatusApplication.NameState -> TODO()
+        StatusApplication.NameState -> {
+            NameScreen(
+                sharedName = state.value.sharedName,
+                onEvent = event)
+        }
         StatusApplication.PeriodState -> {
             PeriodScreen(
                 sharedPeriod = state.value.sharedPeriod,
