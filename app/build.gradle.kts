@@ -96,7 +96,7 @@ dependencies {
     implementation(libs.analytics)
     implementation (libs.mobmetricalib)
     //UserX
-    implementation(files("libs/UserX-4.2.2.aar"))
+    //implementation(files("libs/UserX-4.2.2.aar"))
 
 
     //MyTracker

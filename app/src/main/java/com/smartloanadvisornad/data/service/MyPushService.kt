@@ -11,7 +11,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.huawei.hms.push.HmsMessageService
 import com.huawei.hms.push.RemoteMessage
-import com.smartloanadvisornad.MainActivity
+import com.smartloanadvisornad.ui.MainActivity
 import com.smartloanadvisornad.R
 import com.smartloanadvisornad.domain.utils.CHANNEL_NAME
 import com.smartloanadvisornad.domain.utils.LINK
