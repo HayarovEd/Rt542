@@ -16,7 +16,13 @@ fun BaseScene(
         StatusApplication.AddressState -> TODO()
         StatusApplication.AmountState -> TODO()
         StatusApplication.EmailState -> TODO()
-        StatusApplication.Main -> TODO()
+        StatusApplication.Main -> {
+            MainScreen(
+                lastApplicationState = state.value.lastState,
+                cbrData = state.value.cbrData,
+                onEvent = event
+            )
+        }
         StatusApplication.NameState -> TODO()
         StatusApplication.PeriodState -> TODO()
         StatusApplication.PhoneState -> TODO()
@@ -30,7 +36,9 @@ fun BaseScene(
         StatusApplication.Success -> TODO()
         is StatusApplication.TermState -> TODO()
         StatusApplication.Transparent -> {
-            TODO()
+            GetQuickCashScreen3 (
+                onEvent = event
+            )
         }
         StatusApplication.WaitingState -> TODO()
         is StatusApplication.Web -> TODO()
