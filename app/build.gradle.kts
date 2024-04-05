@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.kapt)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -20,6 +22,22 @@ android {
         }
     }
 
+    /*signingConfigs {
+        getByName("debug") {
+            storeFile = file("ID4888.keystore")
+            keyAlias = "mypass"
+            storePassword = "loans.online.loan.app"
+            keyPassword = "loans.online.loan.app"
+        }
+        create("release") {
+            keyAlias = "mypass"
+            keyPassword = "loans.online.loan.app"
+            storeFile = file("ID4888.keystore")
+            storePassword = "loans.online.loan.app"
+            enableV2Signing = true
+        }
+    }*/
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -30,17 +48,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.7"
     }
     packaging {
         resources {
@@ -66,4 +84,46 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation (libs.hilt.android)
+    annotationProcessor (libs.google.hilt.compiler)
+    kapt (libs.google.hilt.compiler)
+    implementation (libs.androidx.hilt.navigation.compose)
+
+    implementation (libs.accompanist.systemuicontroller)
+
+    //Yandex
+    implementation(libs.analytics)
+    implementation (libs.mobmetricalib)
+    //UserX
+    implementation(files("libs/UserX-4.2.2.aar"))
+
+
+    //MyTracker
+    implementation (libs.mytracker.sdk)
+
+    //Appsflyer
+    implementation (libs.af.android.sdk)
+
+    //HMS
+    implementation (libs.push)
+    implementation (libs.hmscoreinstaller)
+    implementation (libs.ads.identifier)
+    implementation (libs.ads.installreferrer)
+
+
+    //retrofit
+    implementation (libs.gson)
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+
+    // Coil
+    implementation (libs.coil.compose)
+
+    // Icons
+    implementation (libs.androidx.material.icons.extended)
+}
+
+kapt{
+    correctErrorTypes = true
 }
