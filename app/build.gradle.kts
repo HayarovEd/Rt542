@@ -22,21 +22,21 @@ android {
         }
     }
 
-    /*signingConfigs {
+    signingConfigs {
         getByName("debug") {
-            storeFile = file("ID4888.keystore")
+            storeFile = file("ID53848888.keystore")
             keyAlias = "mypass"
-            storePassword = "loans.online.loan.app"
-            keyPassword = "loans.online.loan.app"
+            storePassword = "com.smartloanadvisor"
+            keyPassword = "com.smartloanadvisor"
         }
         create("release") {
             keyAlias = "mypass"
-            keyPassword = "loans.online.loan.app"
-            storeFile = file("ID4888.keystore")
-            storePassword = "loans.online.loan.app"
+            keyPassword = "com.smartloanadvisor"
+            storeFile = file("ID53848888.keystore")
+            storePassword = "com.smartloanadvisor"
             enableV2Signing = true
         }
-    }*/
+    }
 
     buildTypes {
         release {
